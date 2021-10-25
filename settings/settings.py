@@ -54,11 +54,18 @@ def callback_inline(call):
                                       text="Отладка завершена", reply_markup=None)
             elif call.data == 'mathv_p':
                 bot.send_message(call.message.chat.id, 'Кнопка "Математика Профиль" работает')
-                for i in range(len(list_of_links["profil_1"])):
-                    video = list_of_links["profil_1"][i]
+                time.sleep(1)
+                bot.send_message(call.message.chat.id, 'Разбор 1 части профильного варианта математики')
+                for i in range(len(list_of_links["profile_1"])):
+                    video = list_of_links["profile_1"][i]
                     time.sleep(5)
                     bot.send_message(call.message.chat.id, video)
                 time.sleep(1)
+                bot.send_message(call.message.chat.id, 'Разбор 2 части профильного варианта математики')
+                for i in range(len(list_of_links["profile_2"])):
+                    video = list_of_links["profile_2"][i]
+                    time.sleep(5)
+                    bot.send_message(call.message.chat.id, video)
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text="Отладка завершена", reply_markup=None)
             # remove inline buttons
