@@ -11,6 +11,13 @@ import time
 from selenium import webdriver
 from bs4 import BeautifulSoup as BS
 
+
+def token_get():
+    with open("F:\Telegram_bot_for_DE\settings\config.json", 'r', encoding='utf-8') as file:
+        data = json.load(file)
+        return data["telegram_api"]
+
+
 list_of_links = \
     {"base":
         [

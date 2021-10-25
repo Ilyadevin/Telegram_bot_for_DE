@@ -1,12 +1,11 @@
-from basic_settings import *
+from settings.basic_settings import *
 
-bot = telebot.TeleBot('2029007087:AAHQVbeZofoMALxBCsa_bmwAS0uU6rEchvk')
+bot = telebot.TeleBot(token_get())
 
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    # item1 = types.KeyboardButton("📚 Ищем литературу!")
     item2 = types.KeyboardButton("🎦 Ищем видео!")
     item3 = types.KeyboardButton("Об авторе")
 
@@ -45,15 +44,15 @@ def callback_inline(call):
                 bot.send_message(call.message.chat.id, 'Далее будут выведены видео с разбором '
                                                        'варианта ЕГЭ по базовой математике')
                 time.sleep(1)
-                for i in range(len(list_of_links["base"])):
+                for i in range(1, len(list_of_links["base"])):
                     video = list_of_links["base"][i]
-                    time.sleep(5)
+                    time.sleep(1)
                     bot.send_message(call.message.chat.id, video)
                 time.sleep(1)
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text="Отладка завершена", reply_markup=None)
             elif call.data == 'mathv_p':
-                bot.send_message(call.message.chat.id, 'Кнопка "Математика Профиль" работает')
+                bot.send_message(call.message.chat.id, 'Нужен разбор первой или второй части?')
                 time.sleep(1)
                 bot.send_message(call.message.chat.id, 'Разбор 1 части профильного варианта математики')
                 for i in range(len(list_of_links["profile_1"])):
@@ -68,15 +67,10 @@ def callback_inline(call):
                     bot.send_message(call.message.chat.id, video)
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                       text="Отладка завершена", reply_markup=None)
-            # remove inline buttons
-            # bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-            #                     text="Отладка завершена", reply_markup=None)
-            # show alert
-            # bot.answer_callback_query(callback_query_id=call.id, show_alert=False,
-            #                          text="Клавиатура закрыта")
+            # Удаление клавиатуры
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                                  text="Отладка завершена", reply_markup=None)
+
     except Exception as e:
-        print(repr(e))
-
-
-# RUN
-bot.polling(none_stop=True)
+        bot.send_message(445431715, f"Возникла ошибка у пользователя - { call.message.message_id} \n"
+                                    f"код ошибки {str(e)}")
