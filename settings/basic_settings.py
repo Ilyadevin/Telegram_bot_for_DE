@@ -10,7 +10,7 @@ from telebot import types
 import time
 
 def keyboard_reply():
-    markup = types.ReplyKeyboardMarkup( resize_keyboard=True, row_width=1)
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True, row_width=1)
     item1 = types.KeyboardButton("🎦 Ищем видео!")
     item2 = types.KeyboardButton("Об авторе")
     item3 = types.KeyboardButton("/help")
@@ -24,8 +24,8 @@ def keyboard_inline():
     item2 = types.InlineKeyboardButton("Математика профильная", callback_data='mathv_p')
     item3 = types.InlineKeyboardButton("Информатика", callback_data='inf')
     item4 = types.InlineKeyboardButton("Физика", callback_data='ph')
-    #item5 = types.InlineKeyboardButton("В предыдущее меню", callback_data='main_menu')
-    markup.add(item1, item2, item3, item4)
+    item5 = types.InlineKeyboardButton("В предыдущее меню", callback_data='main_menu')
+    markup.add(item1, item2, item3, item4, item5)
     return markup
 
 

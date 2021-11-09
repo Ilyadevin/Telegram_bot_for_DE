@@ -3,10 +3,14 @@ from settings.basic_settings import *
 
 bot = telebot.TeleBot("2029007087:AAHQVbeZofoMALxBCsa_bmwAS0uU6rEchvk")
 
+
 @bot.message_handler(commands=['help'])
 def help(message):
     time.sleep(1)
-    bot.send_message(message.chat.id,"Прототип бота для поиска информации по подготовке к ЕГЭ, некоторые функции могут не работать",keyboard_reply())
+    bot.send_message(message.chat.id,
+                     "Прототип бота для поиска информации по подготовке к ЕГЭ,"
+                     " некоторые функции могут не работать",
+                     keyboard_reply())
 
 
 @bot.message_handler(commands=['start'])
@@ -52,20 +56,30 @@ def callback_inline(call):
                     time.sleep(1.5)
                     bot.send_message(call.message.chat.id, video)
             elif call.data == 'mathv_p':
+                bot.send_message(call.message.chat.id, 'Далее будут выведены видео с разбором '
+                                                       'варианта ЕГЭ по профильной математике')
                 for video_profil in range(len(list_of_links["mprofile"])):
                     video = list_of_links["mprofile"][video_profil]
                     time.sleep(1.5)
                     bot.send_message(call.message.chat.id, video)
             elif call.data == 'inf':
+                bot.send_message(call.message.chat.id, 'Далее будут выведены видео с разбором '
+                                                       'варианта ЕГЭ по информатике')
                 for video_inf in range(len(list_of_links["inf"])):
                     video = list_of_links["inf"][video_inf]
                     time.sleep(1.5)
                     bot.send_message(call.message.chat.id, video)
             elif call.data == 'ph':
+                bot.send_message(call.message.chat.id, 'Далее будут выведены видео с разбором '
+                                                       'варианта ЕГЭ по физике')
                 for video_ph in range(len(list_of_links["ph"])):
                     video = list_of_links["ph"][video_ph]
                     time.sleep(1.5)
                     bot.send_message(call.message.chat.id, video)
+            elif call.data == 'main_menu':
+                time.sleep(1.5)
+                bot.send_message(call.message.chat.id, "Вы в главном меню",
+                                 parse_mode='html', reply_markup=keyboard_reply())
 
     except Exception as e:
         bot.send_message(445431715, f"Возникла ошибка у пользователя - {call.message.message_id} \n"
