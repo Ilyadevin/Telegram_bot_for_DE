@@ -105,24 +105,24 @@ def callback_inline(call):
                 # time.sleep(1)
                 # bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                 #                     text="Отладка завершена", reply_markup=None)
-            elif call.data == 'mathv_p':
-                # bot.send_message(call.message.chat.id, 'Нужен разбор первой или второй части?')
-                time.sleep(1)
-                bot.send_message(call.message.chat.id, 'Разбор 1 части профильного варианта математики')
-                for i in range(len(list_of_links["profile_1"])):
-                    video = list_of_links["profile_1"][i]
-                    time.sleep(5)
-                    bot.send_message(call.message.chat.id, video)
-                time.sleep(1)
-                bot.send_message(call.message.chat.id, 'Разбор 2 части профильного варианта математики')
-                for i in range(len(list_of_links["profile_2"])):
-                    video = list_of_links["profile_2"][i]
-                    time.sleep(5)
-                    bot.send_message(call.message.chat.id, video)
-            bot.edit_message_text(
-                chat_id=call.message.chat.id, message_id=call.message.message_id,
-                text="Отладка завершена", reply_markup=None
-            )
+            # elif call.data == 'mathv_p':
+            #     # bot.send_message(call.message.chat.id, 'Нужен разбор первой или второй части?')
+            #     time.sleep(1)
+            #     bot.send_message(call.message.chat.id, 'Разбор 1 части профильного варианта математики')
+            #     for i in range(len(list_of_links["profile_1"])):
+            #         video = list_of_links["profile_1"][i]
+            #         time.sleep(5)
+            #         bot.send_message(call.message.chat.id, video)
+            #     time.sleep(1)
+            #     bot.send_message(call.message.chat.id, 'Разбор 2 части профильного варианта математики')
+            #     for i in range(len(list_of_links["profile_2"])):
+            #         video = list_of_links["profile_2"][i]
+            #         time.sleep(5)
+            #         bot.send_message(call.message.chat.id, video)
+            # bot.edit_message_text(
+            #     chat_id=call.message.chat.id, message_id=call.message.message_id,
+            #     text="Отладка завершена", reply_markup=None
+            # )
 
     except Exception as e:
         bot.send_message(445431715, f"Возникла ошибка у пользователя - {call.message.message_id} \n"
